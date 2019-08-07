@@ -1,0 +1,56 @@
+{
+    "author": "Dex Manager",
+    "name": "Cotizacion",
+    "description": "Cotizacion",
+    "version": "0.0.1",
+    "icon": "icon.png",
+    "preview": [
+        "icon.png"
+    ],
+    "tags": [
+        "Cotizacion"
+    ],
+    "properties": {
+        "minWidth": 480,
+        "minHeight": 480,
+        "responsive": true,
+        "fonts": [
+            "Kievit Bold SC.ttf"
+        ]
+    },
+    "bindings": [
+        {
+            "id": "spreadsheet",
+            "name": "Id Spreadsheet",
+            "type": "String",
+            "value": "14zZsI7WzjhWjYY20o4A7h2k8NNa8tIlKYvnA7cu3Zqk",
+            "rules": {
+                "required": true
+            }
+        },
+        {
+            "id": "refreshTime",
+            "name": "Tiempo de refrescp",
+            "type": "String",
+            "value": 1,
+            "rules": {
+                "required": true
+            }
+        },
+        {
+            "id": "background",
+            "name": "Fondo",
+            "type": "Image",
+            "value": null,
+            "rules": {
+                "required": true
+            }
+        },
+        {
+            "id": "googleApi",
+            "type": "oAuth/Google",
+            "value": "http://server.dexmanager.com/DexFrontEnd/api/external/v1/GetToken/4a55ae58-5c52-4fd8-a3c7-75128b30418e",
+            "hidden": true
+        }
+    ]
+}

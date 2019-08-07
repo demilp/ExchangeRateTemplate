@@ -1,28 +1,98 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" :style="{ 'background-image': 'url(' + background + ')' }">
+    <Header />
+    <Quotations :values="quotations" />
+    <Services :values="services" />
+    <img src="images/base_dex.jpg" class="footer">
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import Quotations from "./components/Quotations.vue";
+import Services from "./components/Services.vue";
+import DataService from "./dataService.js";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Header,
+    Quotations,
+    Services,
+  },
+  props: ["spreadsheetId", "dexTokenUrl", "refreshTime", "background"],
+  data: function() {
+    return {
+      service: new DataService(this.spreadsheetId, this.dexTokenUrl),
+      services: [],
+      quotations: []
+    };
+  },
+  beforeMount() {
+    this.refresh();
+    setInterval(this.refresh, this.refreshTime);
+  },
+  methods: {
+    refresh: function() {
+      this.service
+        .get()
+        .then(r => {
+          this.quotations = r.quotations;
+          this.services = r.services;
+        })
+        .catch(e => {
+          global.log(e);
+        });
+    }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-size: auto 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: thin;
+  color: white;
+  overflow: hidden;
+}
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.footer{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 0;  
+}
+@font-face {
+  font-family: "light";
+  src: url("./assets/fonts/HelveticaNeueLTCom-Lt.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "roman";
+  src: url("./assets/fonts/HelveticaNeueLTCom-Roman.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "thin";
+  src: url("./assets/fonts/HelveticaNeueLTCom-ThCn.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "oblique";
+  src: url("./assets/fonts/HelveticaNeueLTCom-ThCnO.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

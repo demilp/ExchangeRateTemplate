@@ -1,0 +1,132 @@
+<template>
+  <div id="quotations">
+    <div class="content">
+      <div class="header">
+        <span></span>
+        <span>COMPRA</span>
+        <span>VENTA</span>
+      </div>
+      <slick ref="slick" :options="slickOptions" class="carousel">
+        <div v-for="(value, index) in values" :key="index" class="currency-container">
+          <div class="currency">
+            <div class="symbol">
+              <div>
+                <img :src="codeToImage(value.code)" />
+              </div>
+              <div>{{value.symbol}}</div>
+            </div>
+            <div class="value">${{value.buy}}</div>
+            <div class="value">${{value.sell}}</div>
+          </div>
+        </div>
+      </slick>
+    </div>
+  </div>
+</template>
+
+<script>
+import Slick from "vue-slick";
+export default {
+  name: "Quotations",
+  components: { Slick },
+  data: function() {
+    return {
+      slickOptions: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        vertical: true,
+        autoplay: true,
+        autoplaySpeed: 15000,
+        prevArrow: false,
+        nextArrow: false
+      }
+    };
+  },
+  props: ["values"],
+  onMounted: function() {
+    //setTimeout(this.$refs.slick.next, 3000);
+  },
+  methods: {
+    codeToImage: function(code) {
+      switch (code) {
+        case "USD":
+          return "images/icons/dolar.png";
+        case "EUR":
+          return "images/icons/euro.png";
+        case "GBP":
+          return "images/icons/libra.png";
+        case "BRL":
+          return "images/icons/real.png";
+        case "CLP":
+          return "images/icons/chilenos.png";
+        case "UYU":
+          return "images/icons/uruguayos.png";
+        default:
+          return "images/icons/dolar.png";
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+#quotations {
+  height: 40vh;
+  margin: 5vh 0 0 0;
+  padding: 5vh 0;
+  background-image: url("../../public/images/canvas_cotizaciones.png");
+  background-size: 100% 100%;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 3vw;
+  font-size: 3.75vh;
+}
+.header span {
+  width: 33%;
+  text-align: center;
+}
+.carousel {
+  overflow: hidden;
+}
+.currency {
+  display: flex;
+  flex-direction: row;
+  margin: 2.5vh 0;
+}
+
+.currency-container::after {
+  /*content: "";
+  width: 100%;
+  height: 1vh;
+  background-image: url("../../public/images/line.png");*/
+}
+.currency > div {
+  width: 33%;
+  text-align: center;
+}
+.symbol {
+  font-family: thin;
+}
+.symbol * {
+  margin: 0 1.1vw;
+  border: 1px solid #000000;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: start;
+}
+.symbol div {
+  font-size: 3.75vh;  
+}
+.symbol img {
+  height: 100%;
+  width: auto;
+}
+.value {
+  font-family: roman;
+  font-size: 3.75vh;
+  vertical-align: middle;
+}
+</style>
