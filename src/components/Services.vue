@@ -26,6 +26,14 @@ export default {
         nextArrow: false
       }
     };
+  },
+  watch: {
+    values: function() {
+      this.$refs.slick.destroy();
+      this.$nextTick(function() {
+        this.$refs.slick.create();
+      });
+    }
   }
 };
 </script>
@@ -40,17 +48,17 @@ export default {
   background-image: url("../../public/images/canvas_servicios.png");
   background-size: 100% 100%;
 }
-.carousel{
+.carousel {
   overflow: hidden;
 }
-.service-container{
-  margin: 2vh;
+.service-container {
+  margin: 1vh;
 }
 .service:before {
-    content:"·";
-    font-size:500%;
-    vertical-align: middle;
-    line-height:1.5vh;
-    display: table-cell;
+  content: "·";
+  font-size: 500%;
+  vertical-align: middle;
+  line-height: 1.5vh;
+  display: table-cell;
 }
 </style>

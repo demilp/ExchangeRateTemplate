@@ -8,15 +8,20 @@
       </div>
       <slick ref="slick" :options="slickOptions" class="carousel">
         <div v-for="(value, index) in values" :key="index" class="currency-container">
-          <div class="currency">
-            <div class="symbol">
-              <div>
-                <img :src="codeToImage(value.code)" />
+          <div>
+            <div class="currency">
+              <div class="symbol">
+                <div>
+                  <img :src="codeToImage(value.code)" />
+                </div>
+                <div>{{value.symbol}}</div>
               </div>
-              <div>{{value.symbol}}</div>
+              <div class="value">${{value.buy}}</div>
+              <div class="value">${{value.sell}}</div>
             </div>
-            <div class="value">${{value.buy}}</div>
-            <div class="value">${{value.sell}}</div>
+            <div class="separator">
+              <img src="images/line.png" alt />
+            </div>
           </div>
         </div>
       </slick>
@@ -43,8 +48,13 @@ export default {
     };
   },
   props: ["values"],
-  onMounted: function() {
-    //setTimeout(this.$refs.slick.next, 3000);
+  watch: {
+    values: function() {
+      this.$refs.slick.destroy();
+      this.$nextTick(function() {
+        this.$refs.slick.create();
+      });
+    }
   },
   methods: {
     codeToImage: function(code) {
@@ -82,6 +92,7 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   padding: 0 3vw;
+  margin-bottom: 1.2vh;
   font-size: 3.75vh;
 }
 .header span {
@@ -90,18 +101,31 @@ export default {
 }
 .carousel {
   overflow: hidden;
+  padding-top: 10px;
+  margin-bottom: -10px;
 }
 .currency {
   display: flex;
   flex-direction: row;
-  margin: 2.5vh 0;
+  margin: 2.2vh 0;
 }
 
-.currency-container::after {
+.currency-container > div {
   /*content: "";
   width: 100%;
   height: 1vh;
   background-image: url("../../public/images/line.png");*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.separator {
+  display: block;
+  margin: 0 0 0 25%;
+  width: 70%;
+}
+.separator>img{
+  width: 100%;
 }
 .currency > div {
   width: 33%;
@@ -112,13 +136,12 @@ export default {
 }
 .symbol * {
   margin: 0 1.1vw;
-  border: 1px solid #000000;
   display: table-cell;
   vertical-align: middle;
   text-align: start;
 }
 .symbol div {
-  font-size: 3.75vh;  
+  font-size: 3.75vh;
 }
 .symbol img {
   height: 100%;

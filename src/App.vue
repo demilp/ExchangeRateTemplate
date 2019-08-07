@@ -3,7 +3,7 @@
     <Header />
     <Quotations :values="quotations" />
     <Services :values="services" />
-    <img src="images/base_dex.jpg" class="footer">
+    <img src="images/base_dex.jpg" class="footer" />
   </div>
 </template>
 
@@ -12,13 +12,14 @@ import Header from "./components/Header.vue";
 import Quotations from "./components/Quotations.vue";
 import Services from "./components/Services.vue";
 import DataService from "./dataService.js";
+import { isEqual } from "lodash";
 
 export default {
   name: "app",
   components: {
     Header,
     Quotations,
-    Services,
+    Services
   },
   props: ["spreadsheetId", "dexTokenUrl", "refreshTime", "background"],
   data: function() {
@@ -37,12 +38,17 @@ export default {
       this.service
         .get()
         .then(r => {
-          this.quotations = r.quotations;
-          this.services = r.services;
+          if (!isEqual(this.quotations, r.quotations)) {
+            this.quotations = r.quotations;
+          }
+          if (!isEqual(this.services, r.services)) {
+            this.services = r.services;
+          }
         })
         .catch(e => {
           global.log(e);
-        });
+        })
+        .bind(this);
     }
   }
 };
@@ -65,11 +71,11 @@ body,
   width: 100vw;
   height: 100vh;
 }
-.footer{
+.footer {
   width: 100%;
   height: auto;
   position: absolute;
-  bottom: 0;  
+  bottom: 0;
 }
 @font-face {
   font-family: "light";

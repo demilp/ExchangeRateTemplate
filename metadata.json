@@ -2,7 +2,7 @@
     "author": "Dex Manager",
     "name": "Cotizacion",
     "description": "Cotizacion",
-    "version": "0.0.1",
+    "version": "0.0.10",
     "icon": "icon.png",
     "preview": [
         "icon.png"
@@ -15,7 +15,10 @@
         "minHeight": 480,
         "responsive": true,
         "fonts": [
-            "Kievit Bold SC.ttf"
+            "HelveticaNeueLTCom-Lt.ttf",
+            "HelveticaNeueLTCom-Roman.ttf",
+            "HelveticaNeueLTCom-ThCn.ttf",
+            "HelveticaNeueLTCom-ThCnO.ttf"
         ]
     },
     "bindings": [
@@ -30,7 +33,7 @@
         },
         {
             "id": "refreshTime",
-            "name": "Tiempo de refrescp",
+            "name": "Tiempo de refresco",
             "type": "String",
             "value": 1,
             "rules": {

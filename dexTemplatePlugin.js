@@ -46,15 +46,21 @@ class DexTemplatePlugin {
             );
           }
         });
-        
+
         bindings.forEach(binding => {
           html = html.replace(`{{${binding.id}}}`, binding.value);
         });
         let previewPath = indexPath.replace(".html", ".preview.html");
         fs.writeFileSync(previewPath, html);
-
+        if (!fs.existsSync(path.join(__dirname, "builds"))) {
+          fs.mkdirSync(path.join(__dirname, "builds"));
+        }
         var zip = fs.createWriteStream(
-          path.join(__dirname, `${metadata.name}-${metadata.version}.dextpl`)
+          path.join(
+            __dirname,
+            "builds",
+            `${metadata.name}-${metadata.version}.dextpl`
+          )
         );
         var archive = archiver("zip");
         zip.on("close", function() {
