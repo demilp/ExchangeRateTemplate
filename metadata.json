@@ -2,7 +2,7 @@
     "author": "Dex Manager",
     "name": "Cotizacion",
     "description": "Cotizacion",
-    "version": "0.0.12",
+    "version": "0.0.15",
     "icon": "icon.png",
     "preview": [
         "icon.png"
@@ -54,7 +54,7 @@
                 "Imagen",
                 "Video"
             ],
-            "value": "Imagen",
+            "value": "Video",
             "groupId": 1,
             "isFather": true
         },

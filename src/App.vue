@@ -1,6 +1,13 @@
 <template>
   <div id="app" :style="{ 'background-image': 'url(' + backgroundImage + ')' }">
-    <video muted loop autoplay v-if="backgroundVideo" :src="backgroundVideo" class="background-video"></video>
+    <video
+      muted
+      loop
+      autoplay
+      v-if="backgroundVideo"
+      :src="backgroundVideo"
+      class="background-video"
+    ></video>
     <div class="container">
       <Header />
       <Quotations :values="quotations" />
@@ -74,17 +81,19 @@ export default {
 }
 html,
 body,
-#app {
+#app,
+.background-video,
+.container {
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
+  user-select: none;
 }
+
 .background-video, .container {
   position: absolute;
   object-fit: cover;
-  width: 100vw;
-  height: 100vh;
   top: 0;
   left: 0;
 }

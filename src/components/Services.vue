@@ -1,8 +1,11 @@
 <template>
   <div id="services">
     <slick ref="slick" :options="slickOptions" class="carousel">
-      <div v-for="(service, index) in values" :key="index" class="service-container">
-        <span class="service">{{service}}</span>
+      <div v-for="(service, index) in values" :key="index">
+        <div class="service-container">
+          <div class="dot">·</div>
+          <span class="service">{{service}}</span>
+        </div>
       </div>
     </slick>
   </div>
@@ -21,7 +24,7 @@ export default {
         slidesToScroll: 5,
         vertical: true,
         autoplay: true,
-        autoplaySpeed: 1000,
+        autoplaySpeed: 10000,
         prevArrow: false,
         nextArrow: false
       }
@@ -53,9 +56,10 @@ export default {
 }
 .service-container {
   margin: 1vh;
+  display: flex;
+  flex-direction: row;
 }
-.service:before {
-  content: "·";
+.dot {
   font-size: 500%;
   vertical-align: middle;
   line-height: 1.5vh;
