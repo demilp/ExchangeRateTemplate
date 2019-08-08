@@ -1,9 +1,12 @@
 <template>
-  <div id="app" :style="{ 'background-image': 'url(' + background + ')' }">
-    <Header />
-    <Quotations :values="quotations" />
-    <Services :values="services" />
-    <img src="images/base_dex.jpg" class="footer" />
+  <div id="app" :style="{ 'background-image': 'url(' + backgroundImage + ')' }">
+    <video muted loop autoplay v-if="backgroundVideo" :src="backgroundVideo" class="background-video"></video>
+    <div class="container">
+      <Header />
+      <Quotations :values="quotations" />
+      <Services :values="services" />
+      <img src="images/base_dex.jpg" class="footer" />
+    </div>
   </div>
 </template>
 
@@ -21,7 +24,13 @@ export default {
     Quotations,
     Services
   },
-  props: ["spreadsheetId", "dexTokenUrl", "refreshTime", "background"],
+  props: [
+    "spreadsheetId",
+    "dexTokenUrl",
+    "refreshTime",
+    "backgroundImage",
+    "backgroundVideo"
+  ],
   data: function() {
     return {
       service: new DataService(this.spreadsheetId, this.dexTokenUrl),
@@ -70,6 +79,14 @@ body,
   padding: 0;
   width: 100vw;
   height: 100vh;
+}
+.background-video, .container {
+  position: absolute;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
 }
 .footer {
   width: 100%;

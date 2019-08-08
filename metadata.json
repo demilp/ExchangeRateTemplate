@@ -2,7 +2,7 @@
     "author": "Dex Manager",
     "name": "Cotizacion",
     "description": "Cotizacion",
-    "version": "0.0.10",
+    "version": "0.0.12",
     "icon": "icon.png",
     "preview": [
         "icon.png"
@@ -41,19 +41,54 @@
             }
         },
         {
-            "id": "background",
-            "name": "Fondo",
-            "type": "Image",
-            "value": null,
-            "rules": {
-                "required": true
-            }
-        },
-        {
             "id": "googleApi",
             "type": "oAuth/Google",
             "value": "http://server.dexmanager.com/DexFrontEnd/api/external/v1/GetToken/4a55ae58-5c52-4fd8-a3c7-75128b30418e",
             "hidden": true
+        },
+        {
+            "id": "background",
+            "name": "Background",
+            "type": "List",
+            "options": [
+                "Imagen",
+                "Video"
+            ],
+            "value": "Imagen",
+            "groupId": 1,
+            "isFather": true
+        },
+        {
+            "id": "backgroundImage",
+            "name": "Background Imagen",
+            "type": "Image",
+            "value": "",
+            "isChildOf": "background",
+            "conditional": "Imagen",
+            "hidden": true,
+            "groupId": 1,
+            "rules": {
+                "required": false,
+                "messages": {
+                    "required": "Esta propiedad es requerida"
+                }
+            }
+        },
+        {
+            "id": "backgroundVideo",
+            "name": "Background Video",
+            "type": "Video",
+            "value": "",
+            "isChildOf": "background",
+            "conditional": "Video",
+            "hidden": true,
+            "groupId": 1,
+            "rules": {
+                "required": false,
+                "messages": {
+                    "required": "Esta propiedad es requerida"
+                }
+            }
         }
     ]
 }

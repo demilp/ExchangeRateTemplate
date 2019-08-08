@@ -25,11 +25,17 @@ const refreshTime =
   1000 *
   60;
 console.log(refreshTime);
-const background =
+const backgroundImage =
   process.env.NODE_ENV === "production"
-    ? document.getElementById("background").innerText
+    ? document.getElementById("backgroundImage").innerText
     : "images/bg.jpg";
-console.log(background);
+console.log(backgroundImage);
+
+const backgroundVideo =
+  process.env.NODE_ENV === "production"
+    ? document.getElementById("backgroundVideo").innerText
+    : "";
+console.log(backgroundVideo);
 
 global.log = function(message) {
   let l = {
@@ -44,7 +50,8 @@ let props = {
   spreadsheetId,
   dexTokenUrl,
   refreshTime,
-  background
+  backgroundImage,
+  backgroundVideo
 };
 
 new Vue({
