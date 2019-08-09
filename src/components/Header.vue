@@ -9,13 +9,24 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "Header",
   data: function() {
-    return {};
+    return {
+      time:"",
+      date:""
+    };
+  },
+  mounted:function(){
+    setInterval(()=>{
+      let m = moment();
+      this.time = m.format("LT").replace(" ", "");
+      this.date= m.format("dddd DD MMMM YYYY").toUpperCase();
+    }, 1000);
   },
   computed: {
-    time: function() {
+    /*time: function() {
       let t = new Date().toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
@@ -52,7 +63,7 @@ export default {
         months[d.getMonth()]
       } ${d.getFullYear()}`;
       return s.toUpperCase();
-    }
+    }*/
   }
 };
 </script>
@@ -68,7 +79,6 @@ export default {
   display: block;
   width: auto;
   height: 100%;
- 
 }
 .datetime {
   color: white;

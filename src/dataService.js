@@ -14,7 +14,7 @@ export default class DataService {
           quotations = quotations.map(currency => {
             return {
               code: currency[0],
-              symbol: currency[1],
+              currency: currency[1],
               buy: currency[2],
               sell: currency[3]
             };
@@ -43,7 +43,7 @@ export default class DataService {
         quotations = quotations.map(currency => {
           return {
             code: currency[0],
-            symbol: currency[1],
+            coin: currency[1],
             buy: currency[2],
             sell: currency[3]
           };

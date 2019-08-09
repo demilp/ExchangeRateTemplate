@@ -62,7 +62,7 @@ export default {
 .dot {
   font-size: 500%;
   vertical-align: middle;
-  line-height: 1.5vh;
+  line-height: 1vh;
   display: table-cell;
 }
 </style>

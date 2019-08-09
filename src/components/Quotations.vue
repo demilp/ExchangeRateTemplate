@@ -11,10 +11,12 @@
           <div>
             <div class="currency">
               <div class="symbol">
-                <div>
-                  <img :src="codeToImage(value.code)" />
+                <div><img :src="codeToImage(value.code)" /></div>
+                
+                <div class="coin">
+                  <span class="code">{{value.code}}</span>
+                  <span class="name">{{value.coin}}</span>
                 </div>
-                <div>{{value.symbol}}</div>
               </div>
               <div class="value">${{value.buy}}</div>
               <div class="value">${{value.sell}}</div>
@@ -41,7 +43,7 @@ export default {
         slidesToScroll: 3,
         vertical: true,
         autoplay: true,
-        autoplaySpeed: 15000,
+        autoplaySpeed: 1000000,
         speed: 600,
         prevArrow: false,
         nextArrow: false
@@ -112,41 +114,47 @@ export default {
 }
 
 .currency-container > div {
-  /*content: "";
-  width: 100%;
-  height: 1vh;
-  background-image: url("../../public/images/line.png");*/
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.symbol {
+  display: flex;
+  flex-direction: row;
+  margin: 0 1.1vw;
+}
+
+.symbol img {
+  height: 100%;
+  width: auto;
+}
+.coin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 3.5vh;
+  text-align: left;
+  white-space: nowrap;
+  margin-left: 1vh;
+}
+
+.coin > .code {
+  font-size: 125%;
+}
+.coin > .name {
+  font-size: 40%;
 }
 .separator {
   display: block;
   margin: 0 0 0 25%;
   width: 70%;
 }
-.separator>img{
+.separator > img {
   width: 100%;
 }
 .currency > div {
   width: 33%;
   text-align: center;
-}
-.symbol {
-  font-family: thin;
-}
-.symbol * {
-  margin: 0 1.1vw;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: start;
-}
-.symbol div {
-  font-size: 3.75vh;
-}
-.symbol img {
-  height: 100%;
-  width: auto;
 }
 .value {
   font-family: roman;

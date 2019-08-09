@@ -40,10 +40,11 @@ export default class SpreadsheetClient {
       .bind(this);
   }
   refreshAccessToken() {
-    return axios.get(this.tokenUrl).then(response => {
+    return axios.get(this.tokenUrl).then(response => {      
       this.token = response.data.Token;
+      console.log(this.token);      
       let exp = new Date(response.data.Expiration);
-      setTimeout(this.refreshAccessToken, exp - new Date());
+      setTimeout(()=>{this.refreshAccessToken()}, exp - new Date());
     });
   }
 }
