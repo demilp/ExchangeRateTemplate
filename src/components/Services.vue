@@ -3,7 +3,7 @@
     <slick ref="slick" :options="slickOptions" class="carousel">
       <div v-for="(service, index) in values" :key="index">
         <div class="service-container">
-          <div class="dot">·</div>
+          <span class="dot">·</span>
           <span class="service">{{service}}</span>
         </div>
       </div>
@@ -25,6 +25,7 @@ export default {
         vertical: true,
         autoplay: true,
         autoplaySpeed: 10000,
+        speed: 1200,
         prevArrow: false,
         nextArrow: false
       }
@@ -55,7 +56,7 @@ export default {
   overflow: hidden;
 }
 .service-container {
-  margin: 1vh;
+  margin: 0.45vh;
   display: flex;
   flex-direction: row;
 }

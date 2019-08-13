@@ -43,8 +43,8 @@ export default {
         slidesToScroll: 3,
         vertical: true,
         autoplay: true,
-        autoplaySpeed: 1000000,
-        speed: 600,
+        autoplaySpeed: 15000,
+        speed: 1200,
         prevArrow: false,
         nextArrow: false
       }
@@ -142,6 +142,7 @@ export default {
   font-size: 125%;
 }
 .coin > .name {
+  font-family: roman;
   font-size: 40%;
 }
 .separator {

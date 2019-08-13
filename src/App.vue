@@ -89,6 +89,7 @@ body,
   width: 100vw;
   height: 100vh;
   user-select: none;
+  overflow: hidden;
 }
 
 .background-video, .container {
@@ -98,7 +99,7 @@ body,
   left: 0;
 }
 .footer {
-  width: 100%;
+  width: 100vw;
   height: auto;
   position: absolute;
   bottom: 0;
