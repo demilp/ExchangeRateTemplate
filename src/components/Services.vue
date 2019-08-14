@@ -1,11 +1,8 @@
 <template>
   <div id="services">
     <slick ref="slick" :options="slickOptions" class="carousel">
-      <div v-for="(service, index) in values" :key="index">
-        <div class="service-container">
-          <span class="dot">·</span>
-          <span class="service">{{service}}</span>
-        </div>
+      <div v-for="(service, index) in values" :key="index" class="carousel-item">
+        <span class="service">{{service}}</span>
       </div>
     </slick>
   </div>
@@ -55,10 +52,17 @@ export default {
 .carousel {
   overflow: hidden;
 }
-.service-container {
-  margin: 0.45vh;
-  display: flex;
-  flex-direction: row;
+.carousel-item{
+  margin: 1vh 0;
+}
+.service::before {
+  content: "";
+  border-radius: 50%;
+  margin: 0 1.3vh;
+  background: white;
+  width: 1vh;
+  height: 1vh;
+  display: inline-block;
 }
 .dot {
   font-size: 500%;
