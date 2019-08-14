@@ -24,12 +24,18 @@ class DexTemplatePlugin {
         let bindings = metadata.bindings;
 
         const $ = cheerio.load(html);
+        let bindingContainer = $("<div>");
+        bindingContainer.attr("dex-template", "")
+        $("head").append(bindingContainer);
+        console.log(bindingContainer.text())
         bindings.forEach(binding => {
           if ($(`#${binding.id}`).length === 0)
-            $("head").append(
+            bindingContainer.append(
               `<span id=${binding.id} hidden>{{${binding.id}}}</span>`
             );
+            console.log(bindingContainer.text())
         });
+        
         fs.writeFileSync(indexPath, $.html());
         html = $.html();
         if (fs.existsSync(metadata.icon)) {
