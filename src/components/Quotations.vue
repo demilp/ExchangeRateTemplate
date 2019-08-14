@@ -44,7 +44,7 @@ export default {
         vertical: true,
         autoplay: true,
         autoplaySpeed: 15000,
-        speed: 1200,
+        speed: 2400,
         prevArrow: false,
         nextArrow: false
       }

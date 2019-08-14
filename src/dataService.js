@@ -36,7 +36,8 @@ export default class DataService {
         });
         let quotations = ranges
           .find(e => e.worksheet === "Cotizaciones")
-          .values.slice(1);
+          .values.slice(1)
+          .filter(d => d[2] && d[3]);
         let services = ranges
           .find(e => e.worksheet === "Servicios")
           .values.slice(1);
